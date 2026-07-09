@@ -1,0 +1,458 @@
+/* ============================================================
+   TRIBUTE SITE — Realism, Naturalism, Modernism (1940–1960)
+   Design notes:
+   - Palette and type are drawn from mid-century print culture:
+     Blue Note record sleeves, 1950s paperbacks, typewritten
+     manuscripts, and FSA documentary photography.
+   - Ink:     #17181C   (near-black printing ink)
+   - Paper:   #F1F0EB   (cool book paper)
+   - Cobalt:  #1F49B6   (record-sleeve blue)
+   - Stamp:   #C2402A   (library date-stamp red, used sparingly)
+   - Ochre:   #C99B2E   (aged jacket gold, timeline only)
+   ============================================================ */
+
+:root {
+  --ink: #17181c;
+  --paper: #f1f0eb;
+  --cobalt: #1f49b6;
+  --stamp: #c2402a;
+  --ochre: #c99b2e;
+  --gray: #63635d;
+  --line: #d5d3ca;
+
+  --display: "Anton", "Arial Narrow", sans-serif;
+  --body: "Source Serif 4", Georgia, serif;
+  --type: "Courier Prime", "Courier New", monospace;
+
+  --measure: 66ch;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--cobalt); }
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+}
+
+/* ---------- Navigation ---------- */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.5rem;
+  padding: 0.75rem var(--pad);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-nav .brand {
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.site-nav a:not(.brand) {
+  font-family: var(--type);
+  font-size: 0.85rem;
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.site-nav a:not(.brand):hover { border-bottom-color: var(--stamp); }
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: clamp(3rem, 9vw, 7rem) var(--pad) clamp(3rem, 7vw, 5rem);
+  border-bottom: 4px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .eyebrow {
+  font-family: var(--type);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--stamp);
+  margin: 0 0 1rem;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.hero h1 .knock {
+  display: inline-block;
+  background: var(--cobalt);
+  color: var(--paper);
+  padding: 0 0.18em;
+  margin-left: -0.18em;
+}
+
+.hero .dates {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  color: var(--cobalt);
+  letter-spacing: 0.12em;
+  margin: 1.25rem 0 0;
+}
+
+.hero .standfirst {
+  max-width: var(--measure);
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Sections ---------- */
+
+section { padding: clamp(3rem, 7vw, 5.5rem) var(--pad); }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  margin: 0;
+}
+
+.section-head .kicker {
+  font-family: var(--type);
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.prose { max-width: var(--measure); }
+
+/* ---------- Overview characteristic cards ---------- */
+
+.traits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.trait {
+  border: 2px solid var(--ink);
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.trait .tag {
+  display: inline-block;
+  font-family: var(--type);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.2rem 0.55rem;
+  margin-bottom: 0.9rem;
+}
+
+.trait h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+}
+
+.trait p { margin: 0; font-size: 0.98rem; }
+
+/* ---------- Authors ---------- */
+
+.author {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.author:last-of-type { border-bottom: none; }
+
+.author-portrait {
+  margin: 0;
+}
+
+.author-portrait .frame {
+  aspect-ratio: 4 / 5;
+  background:
+    linear-gradient(160deg, var(--cobalt) 0%, var(--ink) 85%);
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.author-portrait .frame span {
+  font-family: var(--type);
+  font-size: 0.8rem;
+  color: var(--paper);
+  opacity: 0.85;
+}
+
+.author-portrait figcaption {
+  font-family: var(--type);
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+.author h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  margin: 0;
+}
+
+.author .lifespan {
+  font-family: var(--type);
+  color: var(--cobalt);
+  font-size: 0.9rem;
+  margin: 0.2rem 0 1.1rem;
+}
+
+.author .bio { max-width: var(--measure); }
+.author .bio p { margin-top: 0; }
+
+/* ---------- Evidence cards (signature element) ----------
+   Styled like a typewritten index card, stamped in red,
+   with room for quotes copied from the Norton Anthology. */
+
+.evidence {
+  position: relative;
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 1.75rem 1.5rem 1.25rem;
+  margin: 1.75rem 0 0;
+  max-width: var(--measure);
+  font-family: var(--type);
+}
+
+.evidence::before {
+  content: "FROM THE ANTHOLOGY";
+  position: absolute;
+  top: -0.85rem;
+  left: 1rem;
+  transform: rotate(-2deg);
+  font-family: var(--type);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--stamp);
+  border: 2px solid var(--stamp);
+  padding: 0.15rem 0.5rem;
+  background: #fffdf7;
+}
+
+.evidence blockquote {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.evidence cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.75rem;
+}
+
+.evidence .fill-in {
+  color: var(--stamp);
+  border-bottom: 1px dashed var(--stamp);
+}
+
+/* ---------- Montage ---------- */
+
+.montage-note {
+  max-width: var(--measure);
+  font-family: var(--type);
+  font-size: 0.9rem;
+  background: #fff;
+  border-left: 4px solid var(--ochre);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.montage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.montage figure { margin: 0; }
+
+.montage .frame {
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--ink);
+  background: linear-gradient(150deg, #2a2c33 0%, #4a4d57 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.montage .frame span {
+  font-family: var(--type);
+  font-size: 0.78rem;
+  color: var(--paper);
+  opacity: 0.85;
+}
+
+.montage figure:nth-child(3n) .frame {
+  background: linear-gradient(150deg, var(--cobalt) 0%, #16307a 100%);
+}
+
+.montage figcaption {
+  font-family: var(--type);
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ---------- Timeline ---------- */
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.5rem;
+  border-left: 3px solid var(--ink);
+  max-width: 46rem;
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 2rem 1.25rem;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 3px - 7px + 1.5px);
+  top: 0.45rem;
+  width: 14px;
+  height: 14px;
+  background: var(--ochre);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+}
+
+.timeline .year {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  color: var(--cobalt);
+  letter-spacing: 0.05em;
+}
+
+.timeline h3 {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0.15rem 0 0.3rem;
+}
+
+.timeline p {
+  margin: 0;
+  font-size: 0.95rem;
+  max-width: 60ch;
+}
+
+.timeline .lit {
+  display: inline-block;
+  font-family: var(--type);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--stamp);
+  padding: 0.12rem 0.45rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.5rem var(--pad);
+  font-family: var(--type);
+  font-size: 0.85rem;
+}
+
+footer p { max-width: var(--measure); margin: 0 0 0.75rem; }
+footer a { color: var(--ochre); }
+
+/* ---------- Photos inside frames ---------- */
+
+img.frame {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  border: 3px solid var(--ink);
+  padding: 0;
+  filter: grayscale(100%);
+}
+
+.montage img.frame { aspect-ratio: 1 / 1; }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .author { grid-template-columns: 1fr; gap: 1.5rem; }
+  .author-portrait .frame { max-width: 280px; }
+}
